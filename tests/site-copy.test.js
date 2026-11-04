@@ -1,13 +1,21 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {portfolioNote,assistantGreeting,resultSummary} from '../src/domain/site-copy.js';
+import {portfolioNote,assistantGreeting,resultSummary,availableDeedTypes,regionSummary} from '../src/domain/site-copy.js';
 
 test('portfolio note follows the visible record set',()=>{
  assert.match(portfolioNote([]),/hazırlanıyor/);
- assert.match(portfolioNote([{referenceListing:true}]),/1 portföy gösteriliyor/);
+ assert.doesNotMatch(portfolioNote([{referenceListing:true}]),/1 portföy gösteriliyor/);
  assert.match(portfolioNote([{referenceListing:true}]),/Görseller tanıtım amaçlıdır/);
- assert.match(portfolioNote([{id:'new-1',isDemo:false}]),/1 portföy gösteriliyor/);
+ assert.doesNotMatch(portfolioNote([{id:'new-1',isDemo:false}]),/1 portföy gösteriliyor/);
  assert.doesNotMatch(portfolioNote([{id:'new-1',isDemo:false}]),/18 kaynak/);
+});
+test('deed filters only offer known values and region counts follow records',()=>{
+ const records=[{region:'Ergene / Misinli',type:'Doğrulanacak'},{region:'Ergene / Misinli',type:'Müstakil'},{region:'Saray / Beyazköy',type:'Bilgi sağlanmadı'}];
+ assert.deepEqual(availableDeedTypes(records),['Müstakil']);
+ assert.deepEqual(regionSummary(records),[
+  {district:'Ergene',local:'Misinli',count:2},
+  {district:'Saray',local:'Beyazköy',count:1}
+ ]);
 });
 test('assistant greeting does not label live listings demo',()=>{
  assert.match(assistantGreeting([{isDemo:true}]),/demo/);

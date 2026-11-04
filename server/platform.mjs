@@ -4,6 +4,7 @@ import { authenticate,originGuard,rateLimit,newToken,cookie,digest,csrfFor } fro
 import { optimizePhoto,uploadPhoto,photoSizes,deleteObjects } from './media.mjs';
 import { propertyHtml,sitemap } from './seo.mjs';
 import { readFile } from 'node:fs/promises';
+import {combinePortfolio} from '../src/data/reference-listings.js';
 
 const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Frame-Options':'DENY','Referrer-Policy':'no-referrer'};
 const json=(data,status=200,extra={})=>new Response(JSON.stringify(data),{status,headers:{...headers,'Content-Type':'application/json; charset=utf-8',...extra}});
@@ -38,7 +39,8 @@ export function createPlatform({env=process.env,db:injected,readTemplate=()=>rea
       if(path==='sitemap' && !write)return new Response(sitemap((await loadState(db)).records.map(publicRecord).filter(Boolean),config.origin),{headers:{...headers,'Content-Type':'application/xml; charset=utf-8'}});
       if(path==='property' && !write){
         const id=url.searchParams.get('id');
-        const record=(await loadState(db)).records.find(record=>record.id===id && publicRecord(record));
+        const published=(await loadState(db)).records.map(publicRecord).filter(Boolean);
+        const record=combinePortfolio(published).find(record=>record.id===id);
         if(!record)throw new HttpError(404,'İlan bulunamadı veya yayından kaldırıldı.');
         const html=await readTemplate();
         return new Response(propertyHtml(html,record,config.origin),{headers:{...headers,'Content-Type':'text/html; charset=utf-8','X-Robots-Tag':'noindex, nofollow'}});

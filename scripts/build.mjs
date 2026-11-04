@@ -16,6 +16,7 @@ const output = join(root, 'releases', `${preview ? 'demo' : 'site'}-${new Date()
 await mkdir(output, { recursive: true });
 async function copySource(relative) {
   for (const entry of await readdir(join(root, relative), { withFileTypes: true })) {
+    if(relative===join('src','assets')&&['landscape-hero-v2.png','toprak-ehli-logo.jpg'].includes(entry.name))continue;
     const path = join(relative, entry.name);
     if (entry.isSymbolicLink()) throw new Error('Kaynakta sembolik bağlantı paketlenemez.');
     if (entry.isDirectory()) { await mkdir(join(output, path), { recursive: true }); await copySource(path); }

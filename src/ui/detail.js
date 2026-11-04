@@ -48,9 +48,9 @@ export function createDetail(dialog) {
       : 'Kaynak ve kontrol tarihlerini inceleyin. Sağlanmamış bilgiler doğrulanmış kabul edilmez. Güncel tapu ve imar bilgilerini ilgili kurumlarla kontrol edin.';
     const shareUrl = new URL(location.href);
     shareUrl.search = '';
-    if(property.id && !property.referenceListing)shareUrl.pathname=`/ilan/${encodeURIComponent(property.id)}`;
+    if(property.id)shareUrl.pathname=`/ilan/${encodeURIComponent(property.id)}`;
     else {shareUrl.pathname='/';shareUrl.searchParams.set('property', property.id);}
-    shareUrl.hash = 'portfoy';
+    shareUrl.hash = '';
     dialog.querySelector('#property-link').value = shareUrl.href;
     dialog.querySelector('#share-status').textContent = '';
     const facts = dialog.querySelector('#detail-facts');

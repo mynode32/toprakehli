@@ -1,6 +1,6 @@
 import {initializePortfolioMap} from './ui/portfolio-map.js';
 import { combinePortfolio } from './data/reference-listings.js';
-import { initializeExperience } from './ui/experience.js';
+import { initializeExperience,initializeMobileActions } from './ui/experience.js';
 import { renderPortfolioPreview } from './ui/portfolio-preview.js';
 import { properties as bundledProperties } from './data/properties.js';
 import { fetchPortfolio,fetchPortfolioOrFallback } from './data/remote.js';
@@ -128,6 +128,7 @@ initializeAssistant({getProperties:()=>properties,onAction:action=>{
   if(action.type==='results'){mobilePortfolioExpanded=false;form.reset();assistantSelection=action.payload.filter(id=>properties.some(p=>p.id===id));render();document.querySelector('#portfoy').scrollIntoView({behavior:'instant'});return;}
   if(action.type==='compare'){selectedIds=[...new Set(action.payload)].filter(id=>properties.some(p=>p.id===id)).slice(0,comparisonLimit);render();document.querySelector('#comparison-title').scrollIntoView({behavior:'instant'});document.querySelector('#comparison-title').focus({preventScroll:true});}
 }});
+initializeMobileActions();
 if (requested) {
   const trigger = [...document.querySelectorAll('.detail-button')].find(button => button.dataset.id === requested.id);
   openDetail(requested, trigger || document.querySelector('#portfolio-title'));
@@ -145,7 +146,6 @@ if((site.online || site.localManaged) && !loadError){
     if(document.hidden || updating)return;updating=true;
     try{const data=await fetchPortfolio(site.localManaged?'/api/records':'/api/platform/public');if(data.revision!==remoteRevision){
       properties=combinePortfolio(data.records);remoteRevision=data.revision;updatePortfolioMap(properties);selectedIds=selectedIds.filter(id=>properties.some(record=>record.id===id));
-      const region=form.elements.region;region.replaceChildren(new Option('Tüm bölgeler','all'));
       document.querySelector('#filters').hidden=false;document.querySelector('.comparison').hidden=false;document.querySelector('#results').hidden=false;
       initializeSite(properties);render();
       const detail=document.querySelector('#detail');if(detail.open)detail.close();

@@ -36,6 +36,19 @@ test('metadata escapes executable markup and emits real property canonical URLs'
   assert.ok(html.includes('&lt;script&gt;'));assert.ok(html.includes('https://test.example/ilan/listing-1'));assert.ok(!html.includes('<script>alert(1)'));
   assert.ok(sitemap([record()],env.SITE_URL).includes('/ilan/listing-1'));
 });
+test('source portfolio has a working, clearly unverified direct URL',async()=>{
+  const {sql,db}=await createSqlFixture(actor);
+  try{
+    const handle=createPlatform({env,db,readTemplate:async()=>'<html><head><title>Test</title><meta name="description" content="Test"></head><body></body></html>'});
+    const response=await handle(new Request(`${env.SITE_URL}/ilan/source-1`));
+    assert.equal(response.status,200);
+    const html=await response.text();
+    assert.match(html,/Küçükkarıştıran/);
+    assert.match(html,/Kaynak listeden aktarılmış/);
+    assert.doesNotMatch(html,/Demo ortamındaki iletişim hedeflerinin/);
+    assert.equal((await handle(new Request(`${env.SITE_URL}/ilan/source-999`))).status,404);
+  }finally{await sql.close();}
+});
 test('Supabase adapter uses server credentials, bounded requests and safe errors',async()=>{
   let observed;
   const db=createSupabase({url:env.SUPABASE_URL,service:'server-secret',anon:'public-key'},async(url,options)=>{observed={url,options};return new Response(JSON.stringify({message:'revision_conflict server-secret'}),{status:400,headers:{'Content-Type':'application/json'}});});

@@ -1,10 +1,9 @@
-import { contact, contactLinks } from '../data/contact.js';
+import { contactLinks } from '../data/contact.js';
 import { element } from './listings.js';
 import { site } from '../data/site.js';
 
 export function renderContact(container, property) {
   container.replaceChildren();
-  if (!property) container.append(element('p', `${contact.phoneLabel} · ${contact.email}`, 'muted'));
   const links = element('div', undefined, 'contact-links');
   for (const [label, href] of contactLinks(property)) {
     const link = element('a', label, 'button');
