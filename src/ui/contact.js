@@ -23,7 +23,6 @@ export function renderContact(container, property) {
     }
     links.append(link);
   }
-  if(!property){const instagram=element('a','Instagram · @toprakehli ↗','button');instagram.href='https://www.instagram.com/toprakehli/';instagram.target='_blank';instagram.rel='noopener noreferrer';instagram.setAttribute('aria-label','Instagram @toprakehli (yeni sekme)');links.append(instagram);}
   container.append(links, element('p', site.online ? 'WhatsApp ve e-posta mesajları ilgili uygulamada hazırlanır; göndermeden önce inceleyebilirsiniz.' : 'Mesaj uygulamanızda hazırlanır; göndermeden önce inceleyebilirsiniz. Bu sitede talep kaydı oluşturulmaz.', 'muted'));
 }
 

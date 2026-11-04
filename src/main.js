@@ -3,7 +3,7 @@ import { combinePortfolio } from './data/reference-listings.js';
 import { initializeExperience } from './ui/experience.js';
 import { renderPortfolioPreview } from './ui/portfolio-preview.js';
 import { properties as bundledProperties } from './data/properties.js';
-import { fetchPortfolio } from './data/remote.js';
+import { fetchPortfolio,fetchPortfolioOrFallback } from './data/remote.js';
 import { initializeInquiry } from './ui/inquiry.js';
 import { discoverProperties } from './domain/discovery.js';
 import { renderListings } from './ui/listings.js';
@@ -21,8 +21,8 @@ initializeExperience();
 let properties=combinePortfolio(bundledProperties.filter(p=>!p.isDemo)), remoteRevision=null, loadError='';
 if(site.online || site.localManaged){
   document.querySelector('#results').textContent='Portföyler yükleniyor…';
-  try{const data=await fetchPortfolio(site.localManaged?'/api/records':'/api/platform/public');properties=combinePortfolio(data.records);remoteRevision=data.revision;}
-  catch(error){properties=[];loadError=error.message;}
+  const data=await fetchPortfolioOrFallback(site.localManaged?'/api/records':'/api/platform/public',bundledProperties.filter(p=>!p.isDemo));
+  properties=combinePortfolio(data.records);remoteRevision=data.revision;loadError=data.error;
 }
 const form = document.querySelector('#filters');
 const reveal = createMotion();
@@ -123,8 +123,10 @@ if (requested) {
 }
 
 if(loadError){
-  const empty=document.querySelector('.empty');empty.querySelector('p').textContent=loadError;
-  const retry=document.createElement('button');retry.type='button';retry.className='button';retry.textContent='Yeniden dene';retry.addEventListener('click',()=>location.reload());empty.append(retry);
+  const alert=document.createElement('div');alert.className='portfolio-alert';alert.setAttribute('role','status');
+  const message=document.createElement('p');message.textContent=`${loadError} Kaynak listedeki portföyler gösteriliyor; güncel durum için bizimle iletişime geçin.`;
+  const retry=document.createElement('button');retry.type='button';retry.className='button';retry.textContent='Yeniden dene';retry.addEventListener('click',()=>location.reload());
+  alert.append(message,retry);document.querySelector('#results').before(alert);
 }
 if((site.online || site.localManaged) && !loadError){
   let updating=false;

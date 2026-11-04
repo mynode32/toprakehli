@@ -5,3 +5,12 @@ export async function fetchPortfolio(endpoint='/api/platform/public') {
   if(!Array.isArray(data.records))throw new Error('Portföy bilgisi alınamadı.');
   return data;
 }
+
+export async function fetchPortfolioOrFallback(endpoint,fallback,loader=fetchPortfolio){
+  try{
+    const data=await loader(endpoint);
+    return {records:data.records,revision:data.revision,error:''};
+  }catch(error){
+    return {records:fallback,revision:null,error:error.message || 'Güncel portföyler alınamadı.'};
+  }
+}

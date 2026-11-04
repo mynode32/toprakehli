@@ -41,3 +41,7 @@ html[data-theme="light"]{color-scheme:light}
 .social-links{display:flex;flex-wrap:wrap;gap:.65rem;margin:1.25rem 0}
 .social-links a{display:inline-flex;align-items:center;min-height:44px;padding:.65rem 1rem;border:1px solid currentColor;border-radius:999px;text-decoration:none;font-weight:650}
 .social-links a:hover,.social-links a:focus-visible{background:#173b2b;color:#fff}
+.portfolio-alert{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;margin:14px 0;border:1px solid #d8b978;border-radius:12px;background:#fff8e9;color:#4b3a1b}
+.portfolio-alert p{margin:0;line-height:1.55}
+.portfolio-alert .button{flex-shrink:0}
+@media(max-width:760px){.portfolio-alert{align-items:stretch;flex-direction:column}}
