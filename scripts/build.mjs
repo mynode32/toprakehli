@@ -7,7 +7,9 @@ import {detailPage} from './detail-pages.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const preview = process.argv.includes('--demo');
-const records = preview ? demoProperties : validateListings(JSON.parse(await readFile(join(root, 'content/listings.json'), 'utf8')));
+const catalogue=process.argv.includes('--catalogue');
+if(preview&&catalogue)throw new Error('Demo ve kaynak portföy modları birlikte kullanılamaz.');
+const records = preview ? demoProperties : catalogue ? [] : validateListings(JSON.parse(await readFile(join(root, 'content/listings.json'), 'utf8')));
 for (const record of records) if (record.image && !(await stat(join(root, record.image))).isFile()) throw new Error('Portföy görseli bulunamadı.');
 // Her paket ayrı klasördedir; önceki teslim silinmez.
 const output = join(root, 'releases', `${preview ? 'demo' : 'site'}-${new Date().toISOString().replace(/[:.]/g, '-')}`);
@@ -25,12 +27,6 @@ await copySource('src');
 await writeFile(join(output, 'src/data/site.js'), `export const site = { preview: ${preview} };\n`);
 await writeFile(join(output, 'src/data/properties.js'), `export const properties = ${JSON.stringify(records, null, 2)};\n`);
 let html = await readFile(join(root, 'index.html'), 'utf8');
-if (!preview) html = html.replace('Toprak Ehli yerel geliştirme önizlemesi. Portföyler temsili örnektir.', 'Toprak Ehli: Trakya arsa ve arazi portföyleri. Konum, tapu ve kaynak bilgilerini inceleyin; güncel bilgi için iletişime geçin.');
-if (!preview) html = html.replace('Geliştirme önizlemesi · Tüm portföyler temsili, bilgiler doğrulanmamıştır.', 'Toprak Ehli · Arsa ve arazi')
-  .replace('Örnek portföyleri incele ↗', 'Portföyleri incele ↗')
-  .replace('Temsili kayıtlar. Satış ilanı değildir.', 'Güncel portföy bilgisi için bizimle iletişime geçin.')
-  .replace('Yerel geliştirme · Temsili içerik', 'Arsa & Arazi · Trakya')
-  .replace('Bu önizleme yatırım tavsiyesi içermez.', 'İçerikler yatırım tavsiyesi değildir.');
 await writeFile(join(output, 'index.html'), html);
 for(const record of records){const folder=join(output,'ilan',record.id);await mkdir(folder,{recursive:true});await writeFile(join(folder,'index.html'),detailPage(record));}
 await writeFile(join(output, 'robots.txt'), 'User-agent: *\nDisallow: /\n');

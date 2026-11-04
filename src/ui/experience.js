@@ -4,11 +4,7 @@ export function initializeExperience(){
   menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('nav-open',open);});
   nav.addEventListener('click',event=>{if(event.target.closest('a'))closeMenu();});
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu.getAttribute('aria-expanded')==='true'){closeMenu();menu.focus();}});
-  const toggle=document.querySelector('#theme-toggle');
-  const setTheme=dark=>{document.documentElement.dataset.theme=dark?'dark':'light';toggle.setAttribute('aria-pressed',String(dark));toggle.setAttribute('aria-label',dark?'Açık modu aç':'Karanlık modu aç');toggle.textContent=dark?'☀ Açık':'☾ Koyu';};
-  let stored;try{stored=localStorage.getItem('te-theme');}catch{/* Private browsing can disable storage. */}
-  setTheme(stored==='dark');
-  toggle.addEventListener('click',()=>{const dark=document.documentElement.dataset.theme!=='dark';setTheme(dark);try{localStorage.setItem('te-theme',dark?'dark':'light');}catch{/* Theme still works for this visit. */}});
+  document.documentElement.dataset.theme='light';
   const map=document.querySelector('#teExplorerMap');
   function showMap(){
     const a=document.querySelector('#teLat').value.trim().replace(',','.');const b=document.querySelector('#teLon').value.trim().replace(',','.');

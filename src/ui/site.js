@@ -14,7 +14,7 @@ export function initializeSite(properties) {
     document.querySelector('#contact-actions')?.after(note);
     return;
   }
-  document.querySelector('.notice').textContent = 'Toprak Ehli · Arsa ve arazi';
+  document.querySelector('.notice').textContent = 'Portföy bilgileri doğrulama sürecindedir · Görseller temsilidir.';
   document.querySelector('.hero .button').textContent = 'Portföyleri incele ↗';
   document.querySelector('#portfolio-note').textContent = portfolioNote(properties);
   document.querySelector('footer span').textContent = 'Arsa & Arazi · Trakya';

@@ -1,4 +1,5 @@
 // Kaynak dosyadan aktarılan, resmî doğrulaması beklenen sunum kayıtları.
+import {incomingListings} from './incoming-listings.js';
 export const referenceListings = [
   {
     "id": "source-1",
@@ -919,4 +920,7 @@ export const referenceListings = [
     }
   }
 ];
-export function combinePortfolio(records){const ids=new Set(records.map(p=>p.referenceId));return [...records,...referenceListings.filter(p=>!ids.has(p.id))];}
+export function combinePortfolio(records){
+  const ids=new Set(records.flatMap(p=>[p.id,p.referenceId].filter(Boolean)));
+  return [...records,...[...referenceListings,...incomingListings].filter(p=>!ids.has(p.id))];
+}

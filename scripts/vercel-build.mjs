@@ -2,16 +2,16 @@ import { execFileSync } from 'node:child_process';
 import { mkdir, mkdtemp, readFile, writeFile, cp, rename, lstat, readdir } from 'node:fs/promises';
 import { join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {deploymentMode} from './deployment-mode.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
-const live=process.env.TOPRAK_DEPLOY_MODE==='live';
-const online=process.env.TOPRAK_DEPLOY_MODE==='online';
+const {live,online,demo,catalogue}=deploymentMode(process.env.TOPRAK_DEPLOY_MODE);
 if(process.env.TOPRAK_SUPABASE_URL)process.env.SUPABASE_URL=process.env.TOPRAK_SUPABASE_URL;
 if(process.env.TOPRAK_SUPABASE_SERVICE_KEY)process.env.SUPABASE_SERVICE_ROLE_KEY=process.env.TOPRAK_SUPABASE_SERVICE_KEY;
 if(process.env.TOPRAK_SUPABASE_ANON_KEY)process.env.SUPABASE_ANON_KEY=process.env.TOPRAK_SUPABASE_ANON_KEY;
 if(online && ['SUPABASE_URL','SUPABASE_ANON_KEY','SUPABASE_SERVICE_ROLE_KEY','ADMIN_USER_IDS','APP_SECRET','SITE_URL'].some(key=>!process.env[key]))throw new Error('Online yayın için gerekli sunucu environment değerleri eksik.');
-execFileSync(process.execPath,[join(root,'scripts/build.mjs'),...(live?[]:['--demo'])],{cwd:root,stdio:'inherit'});
-const latest=JSON.parse(await readFile(join(root,live?'releases/latest.json':'releases/latest-demo.json'),'utf8'));
+execFileSync(process.execPath,[join(root,'scripts/build.mjs'),...(demo?['--demo']:catalogue?['--catalogue']:[])],{cwd:root,stdio:'inherit'});
+const latest=JSON.parse(await readFile(join(root,demo?'releases/latest-demo.json':'releases/latest.json'),'utf8'));
 const source=resolve(latest.directory);
 if(!source.startsWith(resolve(root,'releases')+sep))throw new Error('Geçersiz paket kaynağı.');
 const parent=resolve(root,'.deploy');
@@ -25,17 +25,6 @@ await writeFile(join(staging,'admin/style.css'),(await readFile(join(root,'admin
 if(online){
   await writeFile(join(staging,'src/data/site.js'),'export const site = { preview: false, online: true };\n');
   await writeFile(join(staging,'src/data/properties.js'),'export const properties = [];\n');
-}
-// Müşteri sunumunda geliştirme dili kaldırılır; temsili kayıtlar gerçek diye işaretlenmez.
-if(!live){
-  const htmlPath=join(staging,'index.html');
-  let html=await readFile(htmlPath,'utf8');
-  html=html.replace('Toprak Ehli yerel geliştirme önizlemesi. Portföyler temsili örnektir.','Toprak Ehli — Trakya arsa ve arazi. Portföy seçeneklerini inceleyin ve bizimle iletişime geçin.')
-    .replace('Geliştirme önizlemesi · Tüm portföyler temsili, bilgiler doğrulanmamıştır.','DEMO İNCELEME · Portföyler ve görseller temsili; gerçek satış ilanı değildir.')
-    .replace('Örnek portföyleri incele ↗','Portföyleri incele ↗')
-    .replace('Yerel geliştirme · Temsili içerik','Arsa & Yatırım · Trakya')
-    .replace('Bu önizleme yatırım tavsiyesi içermez.','İçerikler yatırım tavsiyesi değildir.');
-  await writeFile(htmlPath,html);
 }
 if(process.env.SITE_URL){
   const canonical=new URL(process.env.SITE_URL);
@@ -58,4 +47,4 @@ try{
 }catch(error){if(error.code!=='ENOENT')throw error;}
 if(!resolve(staging).startsWith(parent+sep)||!resolve(output).startsWith(parent+sep))throw new Error('Güvensiz çıktı yolu.');
 await rename(staging,output);
-console.log(`Vercel hazır: ${online?'merkezi API (pakette örnek kayıt yok)':live?'onaylı gerçek içerik':'açıkça etiketli müşteri demosu'} · .deploy/site`);
+console.log(`Vercel hazır: ${online?'merkezi API ve kaynak portföy':live?'onaylı gerçek içerik':demo?'açıkça etiketli demo':'doğrulama bekleyen kaynak portföy'} · .deploy/site`);
