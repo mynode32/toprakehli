@@ -46,6 +46,8 @@ test('source portfolio has a working, clearly unverified direct URL',async()=>{
     assert.match(html,/Küçükkarıştıran/);
     assert.match(html,/Kaynak listeden aktarılmış/);
     assert.doesNotMatch(html,/Demo ortamındaki iletişim hedeflerinin/);
+    assert.match(html,/class="skip"/);
+    assert.doesNotMatch(html,/nocturne\.css/);
     assert.equal((await handle(new Request(`${env.SITE_URL}/ilan/source-999`))).status,404);
   }finally{await sql.close();}
 });
