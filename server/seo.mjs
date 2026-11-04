@@ -1,7 +1,8 @@
 import {detailPage} from '../scripts/detail-pages.mjs';
 export const escapeHtml=value=>String(value ?? '').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-export function propertyHtml(template,record,origin) {
+export function propertyHtml(template,record,origin,indexable=false) {
   template=detailPage(record);
+  if(indexable&&!record.referenceListing&&!record.isDemo)template=template.replace('<meta name="robots" content="noindex, nofollow">','');
   const title=`${record.title || record.local} | Toprak Ehli`;
   const description=(record.description || `${record.region}, ${record.local}. Güncel portföy bilgileri ve iletişim.`).slice(0,180);
   const url=`${origin}/ilan/${encodeURIComponent(record.id)}`;

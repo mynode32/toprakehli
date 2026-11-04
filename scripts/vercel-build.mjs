@@ -3,9 +3,11 @@ import { mkdir, mkdtemp, readFile, writeFile, cp, rename, lstat, readdir } from 
 import { join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {deploymentMode} from './deployment-mode.mjs';
+import {indexingEnabled,robotsContent,indexableHomeHtml} from './search-indexing.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const {live,online,demo,catalogue}=deploymentMode(process.env.TOPRAK_DEPLOY_MODE);
+const indexable=indexingEnabled(process.env);
 if(process.env.TOPRAK_SUPABASE_URL)process.env.SUPABASE_URL=process.env.TOPRAK_SUPABASE_URL;
 if(process.env.TOPRAK_SUPABASE_SERVICE_KEY)process.env.SUPABASE_SERVICE_ROLE_KEY=process.env.TOPRAK_SUPABASE_SERVICE_KEY;
 if(process.env.TOPRAK_SUPABASE_ANON_KEY)process.env.SUPABASE_ANON_KEY=process.env.TOPRAK_SUPABASE_ANON_KEY;
@@ -32,9 +34,13 @@ if(process.env.SITE_URL){
   const {escapeHtml}=await import('../server/seo.mjs');
   const htmlPath=join(staging,'index.html');
   let html=await readFile(htmlPath,'utf8');
-  html=html.replace('</head>',`<link rel="canonical" href="${escapeHtml(canonical.origin)}/"><meta property="og:title" content="Toprak Ehli — Arsa ve Arazi"><meta property="og:description" content="Arsa ve arazi portföylerini inceleyin, Toprak Ehli ile iletişime geçin."><meta property="og:url" content="${escapeHtml(canonical.origin)}/"><meta property="og:type" content="website"><meta property="og:image" content="${escapeHtml(canonical.origin)}/src/assets/landscape-hero.webp"></head>`);
+  const websiteSchema=JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Toprak Ehli',url:`${canonical.origin}/`});
+  html=html.replace('</head>',`<link rel="canonical" href="${escapeHtml(canonical.origin)}/"><meta property="og:title" content="Toprak Ehli — Arsa ve Arazi"><meta property="og:site_name" content="Toprak Ehli"><meta property="og:description" content="Arsa ve arazi portföylerini inceleyin, Toprak Ehli ile iletişime geçin."><meta property="og:url" content="${escapeHtml(canonical.origin)}/"><meta property="og:type" content="website"><meta property="og:image" content="${escapeHtml(canonical.origin)}/src/assets/landscape-hero.webp"><script type="application/ld+json">${websiteSchema}</script></head>`);
+  if(indexable)html=indexableHomeHtml(html);
   await writeFile(htmlPath,html);
+  if(indexable)await writeFile(join(staging,'robots.txt'),robotsContent(true,canonical.origin));
 }
+if(indexable&&!process.env.SITE_URL)throw new Error('Arama motoruna açık yayın için SITE_URL gereklidir.');
 const allowed=new Set(['index.html','404.html','robots.txt','src','admin','sitemap.xml','ilan']);
 for(const entry of await readdir(staging))if(!allowed.has(entry))throw new Error('Dağıtım kökünde beklenmeyen dosya.');
 const output=join(parent,'site');

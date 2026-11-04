@@ -43,7 +43,8 @@ export function createPlatform({env=process.env,db:injected,readTemplate=()=>rea
         const record=combinePortfolio(published).find(record=>record.id===id);
         if(!record)throw new HttpError(404,'İlan bulunamadı veya yayından kaldırıldı.');
         const html=await readTemplate();
-        return new Response(propertyHtml(html,record,config.origin),{headers:{...headers,'Content-Type':'text/html; charset=utf-8','X-Robots-Tag':'noindex, nofollow'}});
+        const indexable=env.VERCEL_ENV==='production'&&!record.referenceListing;
+        return new Response(propertyHtml(html,record,config.origin,indexable),{headers:{...headers,'Content-Type':'text/html; charset=utf-8',...(indexable?{}:{'X-Robots-Tag':'noindex, nofollow'})}});
       }
       if(path==='login' && write) {
         originGuard(request,config);
