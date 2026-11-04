@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Toprak Ehli yerel geliştirme önizlemesi. Portföyler temsili örnektir.">
+  <title>Toprak Ehli — Arsa ve Arazi</title>
+  <link rel="stylesheet" href="src/styles.css">
+  <link rel="stylesheet" href="src/assistant.css">
+  <link rel="stylesheet" href="src/reference.css">
+  <link rel="stylesheet" href="src/redesign.css">
+  <script type="module" src="src/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">İçeriğe geç</a>
+  <div class="notice">Geliştirme önizlemesi · Tüm portföyler temsili, bilgiler doğrulanmamıştır.</div>
+  <header class="header"><div class="header-inner wrap">
+    <a class="brand" href="#" aria-label="Toprak Ehli — Ana sayfa"><img src="src/assets/toprak-ehli-logo.jpg" alt="Toprak Ehli — Arsa & Yatırım" width="220" height="165" fetchpriority="high"></a>
+    <button id="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">☰ Menü</button><nav id="main-nav" aria-label="Ana menü"><a href="#main">Ana Sayfa</a><a href="#portfoy">Portföyler</a><a href="#arazi-kesif">Harita</a><a href="#bolgeler">Bölgeler</a><a href="#rehber">Yatırım Rehberi</a><a href="#yaklasim">Hakkımızda</a><a href="#platform">Dijital Platform</a><a href="#iletisim">İletişim</a></nav>
+    <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Karanlık modu aç">☾ Koyu</button><a class="header-call" href="#iletisim">Birlikte değerlendirelim <span aria-hidden="true">↗</span></a>
+  </div></header>
+  <main id="main">
+    <section class="hero">
+      <img class="hero-image" src="src/assets/landscape-hero.webp" alt="Gün batımında tarlalar ve kıvrılan bir köy yolu; yapay zekâyla üretilmiş temsili manzara." width="1536" height="1024" fetchpriority="high">
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-inner wrap"><div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> TRAKYA’DAN BAŞLAYAN BİR BAKIŞ</p>
+        <h1>Trakya’nın toprakları,<br><em>Türkiye’nin yatırımcıları.</em></h1>
+        <p class="hero-description">Trakya’da arsa ve arazi araştırmasını daha anlaşılır hale getiriyoruz. Bölgeyi tanıyın, seçenekleri karşılaştırın, bilgiyle karar verin.</p>
+        <div class="hero-actions"><a class="button" href="#portfoy">Örnek portföyleri incele ↗</a><a class="hero-secondary" href="#iletisim">Bize ulaşın <span aria-hidden="true">↗</span></a></div>
+      </div><div class="hero-bottom"><div><span class="hero-location">TEKİRDAĞ / TRAKYA</span><p class="caption">Yapay zekâyla üretilmiş temsili görsel · Gerçek parsel değildir.</p></div><a class="scroll-cue" href="#portfoy">Aşağıya keşfet <span aria-hidden="true">↓</span></a></div></div>
+    </section>
+    <div class="discovery-strip"><div class="wrap discovery-grid"><p><span>01</span><strong>Konuma yakından bakın</strong><small>Bölge, çevre ve erişim bilgileri</small></p><p><span>02</span><strong>Bilgiyi birlikte değerlendirin</strong><small>Kaynak, kontrol tarihi ve açık eksikler</small></p><p><span>03</span><strong>Seçeneklerinizi karşılaştırın</strong><small>Fiyat, alan ve tapu türü yan yana</small></p></div></div>
+    <section class="portfolio wrap" id="portfoy" aria-labelledby="portfolio-title">
+      <div class="section-heading"><div><p class="eyebrow">ARSA & ARAZİ PORTFÖYLERİ</p><h2 id="portfolio-title" tabindex="-1">Öne Çıkan Portföyler</h2></div><p id="portfolio-note">Temsili kayıtlar. Satış ilanı değildir.</p></div>
+      <form id="filters" class="filters">
+        <label class="search-field">Konum veya portföy ara<input type="search" name="query" maxlength="100" placeholder="Mahalle, bölge veya kayıt no"></label><label>Sıralama<select name="sort"><option value="default">Önerilen sıra</option><option value="price-asc">Fiyat: düşükten yükseğe</option><option value="price-desc">Fiyat: yüksekten düşüğe</option><option value="area-desc">Alan: büyükten küçüğe</option></select></label>
+        <label>Bölge<select name="region"><option value="all">Tüm bölgeler</option></select></label>
+        <label>En yüksek fiyat<select name="budget"><option value="all">Tüm fiyatlar</option><option value="500000">500.000 TL</option><option value="1000000">1.000.000 TL</option><option value="1500000">1.500.000 TL</option><option value="2000000">2.000.000 TL</option><option value="4000000">4.000.000 TL</option><option value="5500000">5.500.000 TL</option><option value="7500000">7.500.000 TL</option></select></label>
+        <label>Tapu türü<select name="type"><option value="all">Tümü</option><option>Doğrulanacak</option><option>Müstakil</option><option>Hisseli</option></select></label>
+        <label>En az alan<select name="size"><option value="all">Tüm alanlar</option><option value="300">300 m²</option><option value="500">500 m²</option><option value="1000">1.000 m²</option><option value="2000">2.000 m²</option><option value="3000">3.000 m²</option><option value="5000">5.000 m²</option></select></label>
+        <div class="filter-actions"><button class="button" type="submit">Listele <span aria-hidden="true">↗</span></button><button class="reset" type="reset">Sıfırla</button></div>
+      </form>
+      <p id="results" role="status"></p><div id="listings" class="listings"></div>
+      <div class="portfolio-disclosure-wrap"><button id="show-all-listings" class="portfolio-disclosure" type="button" aria-expanded="false" aria-controls="listings" hidden></button></div>
+      <div class="portfolio-invitation"><div><p class="eyebrow">SİZİN TOPRAĞINIZ, YENİ BİR HİKÂYE</p><h3>Arsanızı birlikte değerlendirelim.</h3><p>Satmak istediğiniz arsa veya arazi için bize ulaşın.<br>Konumu ve bilgileri birlikte değerlendirelim.</p></div><a class="button" href="#iletisim">Portföyüm için görüşelim ↗</a></div>
+      <noscript>Portföy filtreleme ve detaylar için JavaScript gereklidir.</noscript>
+      <section class="comparison" aria-labelledby="comparison-title">
+        <div class="section-heading"><div><p class="eyebrow">YAN YANA İNCELE</p><h2 id="comparison-title" tabindex="-1">Portföy karşılaştırma</h2></div><button id="clear-comparison" type="button" class="reset">Seçimleri temizle</button></div>
+        <p id="comparison-status" role="status" class="muted"></p>
+        <div id="comparison"></div>
+      </section>
+    </section>
+<section class="te-explorer" id="arazi-kesif" aria-labelledby="teExplorerTitle">
+ <div class="wrap container">
+  <div class="te-feature-heading"><div><div class="kicker">KONUMU BİRLİKTE KEŞFEDELİM</div><h2 id="teExplorerTitle">Haritada Arazi Keşfi</h2><p>Koordinat gir, haritada konumu incele, uydu görünümüne veya resmî parsel sorgusuna geç.</p></div><span class="te-new-chip">Yalın arayüz</span></div>
+  <div class="te-explorer-grid">
+   <div class="te-map-form">
+    <h3>Koordinat ile konum bul</h3>
+    <p>Bu bölüm bir prototiptir. Haritada gösterilen başlangıç noktası yalnızca örnektir; satılık bir taşınmazın koordinatı değildir.</p>
+    <div class="te-form-pair">
+     <div><label for="teLat">Enlem (Latitude)</label><input type="text" id="teLat" value="41.0800" inputmode="decimal" autocomplete="off" aria-label="Enlem örn 41.0800"></div>
+     <div><label for="teLon">Boylam (Longitude)</label><input type="text" id="teLon" value="27.2400" inputmode="decimal" autocomplete="off" aria-label="Boylam örn 27.2400"></div>
+    </div>
+    <div id="teMapError" class="te-map-error" role="status"></div>
+    <div class="te-map-actions">
+      <button class="btn primary" type="button">⌖ Haritada Göster</button>
+      <a class="btn secondary" id="teSatelliteLink" href="https://www.google.com/maps/@41.08,27.24,17z/data=!3m1!1e3" target="_blank" rel="noopener noreferrer">Uydu Görünümü ↗</a>
+    </div>
+    <div class="te-map-actions"><a class="btn ghost" href="https://parselsorgu.tkgm.gov.tr/" target="_blank" rel="noopener noreferrer">TKGM Resmî Parsel Sorgu ↗</a></div>
+    <p class="te-form-help"><strong>Önemli:</strong> Gömülü harita OpenStreetMap'tir; Google uydu görünümü ayrı sekmede açılır. TKGM Parsel Sorgu bağlantısı resmî sistemi yeni sekmede açar; kadastro verileri henüz Toprak Ehli sitesine aktarılmıyor. Bu alanlar için internet bağlantısı gerekir.</p>
+   </div>
+   <div class="te-map-frame"><iframe id="teExplorerMap" title="Örnek koordinat için OpenStreetMap harita önizlemesi" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.openstreetmap.org/export/embed.html?bbox=27.215%2C41.055%2C27.265%2C41.105&amp;layer=mapnik&amp;marker=41.08%2C27.24"></iframe><span class="te-map-watermark">HARİTA ÖNİZLEMESİ · TEMSİLİ KONUM</span></div>
+  </div>
+  <p class="te-map-legend">Konum aracı arazi mülkiyetini, kesin parsel sınırını veya imar durumunu doğrulamaz. Resmî kontroller ilgili kurumlarda yapılır. Uydu fotoğrafları canlı görüntü değildir.</p>
+ </div>
+</section>
+<section class="region-proof" id="envanter"><div class="wrap container"><span class="proof-flag">19 Ekim kaynak listesi · Doğrulama aşaması</span><h2>Trakya portföy coğrafyamız</h2><p class="intro">Dört bölgede 18 ayrı satış kaydı listeleniyor; aynı ada/parseldeki farklı kesimler ayrı gösteriliyor. 18 kaydı site içi portföy ilanlarına aktardık. Ada/parsel ve güncel satış koşulları resmî kaynaklardan ve portföy yöneticisinden doğrulanmalıdır.</p><div class="proof-grid"><div class="proof-item"><b>Lüleburgaz</b><span>Küçükkarıştıran · 4 kayıt</span></div><div class="proof-item"><b>Hayrabolu</b><span>Muzruplu · 3 kayıt</span></div><div class="proof-item"><b>Ergene</b><span>Misinli · 7 kayıt</span></div><div class="proof-item"><b>Ergene</b><span>Pınarbaşı · 4 kayıt</span></div></div></div></section>
+<section class="pad" id="platform"><div class="wrap container"><div class="platform"><div class="platform-top"><div><div class="kicker" style="color:#d7b87b">Geleceğin arsa platformu</div><h2>Dijital Yatırım Asistanınız</h2><p>Toprak Ehli'nin platformunda yer alan ve geliştirilen CRM, portföy eşleştirme ve karar destek modüllerinin tanıtım alanı.</p></div><button class="btn secondary">Asistanı Deneyin →</button></div><div class="platform-features"><article class="platform-card"><div class="round">☷</div><strong>CRM Müşteri Takibi</strong><p>Görüşmeler, sorumlular, takip tarihleri ve satış aşamaları tek yönetim panelinde.</p><span class="status">Prototip / plan</span></article><article class="platform-card"><div class="round">◇</div><strong>AI Yatırım Analizi</strong><p>Doğrulanmış parsel verisi, imar, ulaşım ve risklerin kaynaklı analizi.</p><span class="status">Geliştirilecek</span></article><article class="platform-card"><div class="round">▦</div><strong>Portföy Eşleştirme</strong><p>Yatırımcı bütçesi ve bölge tercihine göre girilmiş ilan kayıtlarını bulma.</p><span class="status">Demo mevcut</span></article><article class="platform-card"><div class="round">▥</div><strong>Yönetim Raporları</strong><p>Reklam, yeni müşteri, arsa gösterimi, teklif ve satış dönüşüm takibi.</p><span class="status">Geliştirilecek</span></article></div></div></div></section>
+<section class="pad" id="bolgeler"><div class="wrap container regional"><div class="regional-map" role="img" aria-label="Tekirdağ ve Marmara Ereğlisi etiketli, coğrafi ölçeğe göre çizilmemiş şematik Trakya görseli"><div class="map-topline"><span class="map-title">TRAKYA</span><span class="map-caption">BÖLGESEL BAKIŞ · ŞEMATİK</span></div><svg class="map-art" viewBox="0 0 720 340" aria-hidden="true" focusable="false"><defs><linearGradient id="land" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#72977a"/><stop offset="1" stop-color="#315f49"/></linearGradient><pattern id="contours" width="54" height="42" patternUnits="userSpaceOnUse"><path d="M-10 29 Q12 5 37 19 T76 10" fill="none" stroke="#eff1d9" stroke-opacity=".19" stroke-width="1"/></pattern></defs><path class="map-water" d="M0 257 Q170 232 350 250 T720 220V340H0Z"/><path class="map-shore" d="M0 257 Q170 232 350 250 T720 220"/><path class="map-land" d="M78 138 137 94 210 72 275 92 348 60 410 83 475 68 531 100 572 148 536 177 482 187 438 215 375 209 328 228 267 208 222 225 169 195 112 188Z"/><path d="M78 138 137 94 210 72 275 92 348 60 410 83 475 68 531 100 572 148 536 177 482 187 438 215 375 209 328 228 267 208 222 225 169 195 112 188Z" fill="url(#contours)"/><path class="map-route" d="M170 144 Q260 123 350 145 T499 151"/><g class="map-point point-te" transform="translate(350 145)"><circle r="7"/><circle class="map-point-halo" r="15"/></g><g class="map-point point-me" transform="translate(499 151)"><circle r="7"/><circle class="map-point-halo" r="15"/></g></svg><span class="map-label label-te">Tekirdağ</span><span class="map-label label-me">Marmara Ereğlisi</span><span class="map-footnote">Konum çizimi temsilidir; parsel sınırı göstermez.</span></div><div class="region-info"><div class="kicker">Trakya yatırım rehberi</div><h2>Toprağın değerini konumuyla anlayın.</h2><p>Arazi yatırımını değerlendirirken yalnızca fiyatına değil; tapu niteliğine, yola erişimine, imar bilgilerine ve yatırım süresine birlikte bakmak gerekir.</p><div class="region-bullets"><div class="bullet"><span>✓</span> Bölgeye göre portföy ve ulaşım karşılaştırması</div><div class="bullet"><span>✓</span> Tapu, imar ve kullanım bilgilerinin kontrolü</div><div class="bullet"><span>✓</span> Açık ve kaynaklı risk değerlendirmesi</div></div><button class="btn primary">Bölge Rehberini İncele →</button></div></div></section>
+<section class="guide" id="rehber"><div class="wrap container"><div class="section-head"><div><div class="kicker">Yatırımdan önce bilgi</div><h2>Toprak Ehli Yatırım Rehberi</h2><p>Planlanan rehber içeriklerimizden üç örnek.</p></div></div><div class="guide-grid"><article class="guide-card"><span class="num">01</span><h3>Tapuda Neye Bakılır?</h3><p>Tapu niteliği, hisse durumu ve taşınmazın hukuki özelliklerini değerlendirmenin ilk adımları.</p><button class="btn ghost tiny">İçeriğe Göz At →</button></article><article class="guide-card"><span class="num">02</span><h3>İmar Bilgisi Nasıl Kontrol Edilir?</h3><p>Yetkili kurumlardan doğrulama yapmanın ve güncel imar durumunu anlamanın önemi.</p><button class="btn ghost tiny">İçeriğe Göz At →</button></article><article class="guide-card"><span class="num">03</span><h3>Trakya'da Bölge Araştırması</h3><p>Ulaşım, çevresel gelişmeler, arsa niteliği ve zaman ufkunu birlikte değerlendirme.</p><button class="btn ghost tiny">İçeriğe Göz At →</button></article></div></div></section>
+    <section class="approach" id="yaklasim"><div class="wrap"><p class="eyebrow">ÇALIŞMA İLKEMİZ</p><h2>Güven, bilginin<br>kaynağından başlar.</h2><div class="principles"><p><strong>01 / Kaynağı görünür bilgi</strong><span id="source-principle">Gerçek ilan sisteminde bilgiler kaynak ve doğrulama tarihiyle sunulacak.</span></p><p><strong>02 / Eksiklere açık yaklaşım</strong>Sağlanmayan bilgiler açıkça işaretlenir. Tahminle doldurulmaz.</p><p><strong>03 / Bilinçli değerlendirme</strong>Getiri garantisi verilmez. Bu önizleme yatırım tavsiyesi içermez.</p></div></div></section>
+    <section class="faq wrap" aria-labelledby="faq-title"><div><p class="eyebrow">MERAK ETTİKLERİNİZ</p><h2 id="faq-title">Doğru sorular,<br><em>daha net bir bakış.</em></h2></div><div class="faq-list"><details><summary>Portföydeki bilgileri nasıl değerlendirebilirim?</summary><p>Her kaydın detayında fiyat, alan, tapu türü ve sağlanan diğer bilgiler bulunur. Kaynak ve kontrol tarihini birlikte okuyun; eksik alanlar ayrıca işaretlenir.</p></details><details><summary>Portföyleri nasıl karşılaştırabilirim?</summary><p>Kartlardaki Karşılaştır seçeneğiyle en fazla üç kayıt seçebilirsiniz. Filtrelerinizi değiştirseniz de seçimleriniz korunur. Sayfayı yenilediğinizde seçimler sıfırlanır.</p></details><details><summary>Bir portföy hakkında nasıl bilgi alabilirim?</summary><p>İlan detayındaki WhatsApp veya e-posta bağlantısını kullanabilirsiniz. Kayıt adı mesajınıza eklenir; mesajı inceleyip kendiniz gönderirsiniz. Telefonla da bize ulaşabilirsiniz.</p></details></div></section>
+<section class="wrap cta-section"><div><h2>Doğru arazi, bilinçli yatırım.</h2><p>Konumu keşfedelim, seçenekleri birlikte değerlendirelim.</p></div><a class="button" href="#iletisim">Bizimle iletişime geçin ↗</a></section>
+    <section class="contact wrap" id="iletisim"><div class="contact-heading"><p class="eyebrow">BİRLİKTE KONUŞALIM</p><h2>Aklınızdaki toprağa<br><em>bir adım yaklaşın.</em></h2><p class="contact-intro">Aradığınız bölgeyi ve beklentilerinizi anlatın.<br>İlk adımı birlikte atalım.</p></div><div class="contact-panel"><h3>Toprak Ehli ile iletişime geçin</h3><div id="contact-actions"><p><a href="tel:+905304627659">0530 462 76 59</a> · <a href="mailto:toprakehli.ofis@gmail.com">toprakehli.ofis@gmail.com</a></p></div><p class="muted">Bu site üzerinden form kaydı alınmaz. WhatsApp veya e-posta bağlantısını seçtiğinizde ilgili hizmeti kullanırsınız.</p></div></section>
+    <section class="wrap inquiry-section" id="inquiry" hidden></section>
+  </main>
+  <footer class="wrap">TOPRAK EHLİ <span>Yerel geliştirme · Temsili içerik</span></footer>
+  <dialog id="detail" aria-labelledby="detail-title"><div class="dialog-head"><span class="eyebrow">TEMSİLİ PORTFÖY</span><button id="close-detail" type="button" autofocus>Kapat ×</button></div><h2 id="detail-title"></h2><p id="detail-location"></p><dl id="detail-facts"></dl><p class="disclaimer">Bu kayıt gerçek satış ilanı değildir. Tapu, imar, yol ve altyapı bilgileri doğrulanmamıştır. İlgili kurum ve uzmanlardan güncel bilgi alınmalıdır.</p><label class="share-label">Portföy bağlantısı<input id="property-link" type="url" readonly aria-label="Paylaşılabilir portföy bağlantısı"></label><button id="copy-property-link" type="button" class="detail-button">Bağlantıyı kopyala</button><p id="share-status" class="muted" role="status"></p><div id="detail-contact"></div></dialog>
+</body>
+</html>

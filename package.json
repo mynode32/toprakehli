@@ -1,0 +1,33 @@
+{
+  "name": "toprak-ehli",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test",
+    "check": "node scripts/check.mjs",
+    "build": "node scripts/build.mjs",
+    "release:check": "node scripts/verify-release.mjs",
+    "build:demo": "node scripts/build.mjs --demo",
+    "admin:setup": "node scripts/admin-setup.mjs",
+    "admin": "node scripts/admin-start.mjs",
+    "build:vercel": "node scripts/vercel-build.mjs",
+    "lint": "eslint src admin online api server scripts tests",
+    "preview:platform": "node scripts/platform-preview.mjs",
+    "backup": "node scripts/backup.mjs"
+  },
+  "dependencies": {
+    "sharp": "0.35.5"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.14",
+    "eslint": "10.14.0",
+    "globals": "17.13.0"
+  },
+  "overrides": {
+    "minimatch": "11.0.1"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}

@@ -1,0 +1,15 @@
+releases/
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+.private/
+.test-environments/
+content/*.tmp
+.deploy/
+.vercel/
+
+.vercel
+.env*
+!.env.example

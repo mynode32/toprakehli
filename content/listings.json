@@ -1,0 +1,55 @@
+[
+  {
+    "id": "ilan-1165d628-5054-4656-b38c-58401c863218",
+    "region": "SADWAFWAFA",
+    "local": "WDAOPSPDOPAKOSDKPAD",
+    "type": "Bilgi sağlanmadı",
+    "price": 0.01,
+    "area": 0.01,
+    "isDemo": false,
+    "publicationApproved": true,
+    "evidence": {
+      "price": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "area": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "type": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "parcel": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "zoning": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "road": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "utilities": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      }
+    },
+    "parcel": "AFAFA",
+    "zoning": "ASDAS",
+    "road": "ASDAS",
+    "utilities": "ADADA",
+    "image": "src/assets/upload-132365f422c77f4737549b0fbdd2c078.png",
+    "imageAlt": "ADADA"
+  }
+]

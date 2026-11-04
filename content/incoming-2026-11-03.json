@@ -1,0 +1,458 @@
+[
+  {
+    "id": "incoming-2026-11-03-1",
+    "city": "Kırklareli",
+    "district": "Lüleburgaz",
+    "neighborhood": "Düğüncübaşı",
+    "region": "Lüleburgaz / Düğüncübaşı",
+    "local": "Düğüncübaşı",
+    "title": "Düğüncübaşı · 534 m²",
+    "parcel": "0 / 1223",
+    "area": 534,
+    "price": 500000,
+    "type": "Doğrulanacak",
+    "description": "Kaynak listesinde tapudaki nitelik TARLA olarak belirtilmiştir; bu ifade tek/paylı mülkiyet şeklini doğrulamaz. Tapu/pay oranı, alan ve fiyat belgelerle kontrol edilmeden yayımlanmamalıdır.",
+    "isDemo": false,
+    "publicationApproved": false,
+    "status": "draft",
+    "currency": "TRY",
+    "category": "land",
+    "photos": [],
+    "evidence": {
+      "price": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "area": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "type": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "parcel": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "zoning": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "road": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "utilities": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      }
+    }
+  },
+  {
+    "id": "incoming-2026-11-03-2",
+    "city": "Kırklareli",
+    "district": "Lüleburgaz",
+    "neighborhood": "Emirali",
+    "region": "Lüleburgaz / Emirali",
+    "local": "Emirali",
+    "title": "Emirali · 330 m²",
+    "parcel": "0 / 2482",
+    "area": 330,
+    "price": 300000,
+    "type": "Doğrulanacak",
+    "description": "Kaynak listesinde tapudaki nitelik TARLA olarak belirtilmiştir; bu ifade tek/paylı mülkiyet şeklini doğrulamaz. Tapu/pay oranı, alan ve fiyat belgelerle kontrol edilmeden yayımlanmamalıdır.",
+    "isDemo": false,
+    "publicationApproved": false,
+    "status": "draft",
+    "currency": "TRY",
+    "category": "land",
+    "photos": [],
+    "evidence": {
+      "price": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "area": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "type": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "parcel": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "zoning": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "road": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "utilities": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      }
+    }
+  },
+  {
+    "id": "incoming-2026-11-03-3",
+    "city": "Tekirdağ",
+    "district": "Ergene",
+    "neighborhood": "İğneler",
+    "region": "Ergene / İğneler",
+    "local": "İğneler",
+    "title": "İğneler · 850 m²",
+    "parcel": "153 / 46",
+    "area": 850,
+    "price": 800000,
+    "type": "Doğrulanacak",
+    "description": "Kaynak listesinde tapudaki nitelik TARLA olarak belirtilmiştir; bu ifade tek/paylı mülkiyet şeklini doğrulamaz. Tapu/pay oranı, alan ve fiyat belgelerle kontrol edilmeden yayımlanmamalıdır.",
+    "isDemo": false,
+    "publicationApproved": false,
+    "status": "draft",
+    "currency": "TRY",
+    "category": "land",
+    "photos": [],
+    "evidence": {
+      "price": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "area": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "type": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "parcel": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "zoning": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "road": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "utilities": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      }
+    }
+  },
+  {
+    "id": "incoming-2026-11-03-4",
+    "city": "Tekirdağ",
+    "district": "Ergene",
+    "neighborhood": "İğneler",
+    "region": "Ergene / İğneler",
+    "local": "İğneler",
+    "title": "İğneler · 1.370 m²",
+    "parcel": "132 / 259",
+    "area": 1370,
+    "price": 1200000,
+    "type": "Doğrulanacak",
+    "description": "Kaynak listesinde tapudaki nitelik TARLA olarak belirtilmiştir; bu ifade tek/paylı mülkiyet şeklini doğrulamaz. Tapu/pay oranı, alan ve fiyat belgelerle kontrol edilmeden yayımlanmamalıdır.",
+    "isDemo": false,
+    "publicationApproved": false,
+    "status": "draft",
+    "currency": "TRY",
+    "category": "land",
+    "photos": [],
+    "evidence": {
+      "price": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "area": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "type": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "parcel": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "zoning": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "road": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "utilities": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      }
+    }
+  },
+  {
+    "id": "incoming-2026-11-03-5",
+    "city": "Tekirdağ",
+    "district": "Saray",
+    "neighborhood": "Beyazköy",
+    "region": "Saray / Beyazköy",
+    "local": "Beyazköy",
+    "title": "Beyazköy · 730 m²",
+    "parcel": "193 / 20",
+    "area": 730,
+    "price": 550000,
+    "type": "Doğrulanacak",
+    "description": "Kaynak listesinde tapudaki nitelik TARLA olarak belirtilmiştir; bu ifade tek/paylı mülkiyet şeklini doğrulamaz. Tapu/pay oranı, alan ve fiyat belgelerle kontrol edilmeden yayımlanmamalıdır.",
+    "isDemo": false,
+    "publicationApproved": false,
+    "status": "draft",
+    "currency": "TRY",
+    "category": "land",
+    "photos": [],
+    "evidence": {
+      "price": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "area": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "type": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "parcel": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "zoning": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "road": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "utilities": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      }
+    }
+  },
+  {
+    "id": "incoming-2026-11-03-6",
+    "city": "Tekirdağ",
+    "district": "Saray",
+    "neighborhood": "Beyazköy",
+    "region": "Saray / Beyazköy",
+    "local": "Beyazköy",
+    "title": "Beyazköy · 130 m²",
+    "parcel": "239 / 19",
+    "area": 130,
+    "price": 100000,
+    "type": "Doğrulanacak",
+    "description": "Kaynak listesinde tapudaki nitelik TARLA olarak belirtilmiştir; bu ifade tek/paylı mülkiyet şeklini doğrulamaz. Tapu/pay oranı, alan ve fiyat belgelerle kontrol edilmeden yayımlanmamalıdır.",
+    "isDemo": false,
+    "publicationApproved": false,
+    "status": "draft",
+    "currency": "TRY",
+    "category": "land",
+    "photos": [],
+    "evidence": {
+      "price": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "area": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "type": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "parcel": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "zoning": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "road": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "utilities": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      }
+    }
+  },
+  {
+    "id": "incoming-2026-11-03-7",
+    "city": "Tekirdağ",
+    "district": "Saray",
+    "neighborhood": "Beyazköy",
+    "region": "Saray / Beyazköy",
+    "local": "Beyazköy",
+    "title": "Beyazköy · 150 m²",
+    "parcel": "239 / 24",
+    "area": 150,
+    "price": 100000,
+    "type": "Doğrulanacak",
+    "description": "Kaynak listesinde tapudaki nitelik TARLA olarak belirtilmiştir; bu ifade tek/paylı mülkiyet şeklini doğrulamaz. Tapu/pay oranı, alan ve fiyat belgelerle kontrol edilmeden yayımlanmamalıdır.",
+    "isDemo": false,
+    "publicationApproved": false,
+    "status": "draft",
+    "currency": "TRY",
+    "category": "land",
+    "photos": [],
+    "evidence": {
+      "price": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "area": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "type": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "parcel": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "zoning": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "road": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "utilities": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      }
+    }
+  },
+  {
+    "id": "incoming-2026-11-03-8",
+    "city": "Tekirdağ",
+    "district": "Saray",
+    "neighborhood": "Beyazköy",
+    "region": "Saray / Beyazköy",
+    "local": "Beyazköy",
+    "title": "Beyazköy · 140 m²",
+    "parcel": "239 / 26",
+    "area": 140,
+    "price": 105000,
+    "type": "Doğrulanacak",
+    "description": "Kaynak listesinde tapudaki nitelik TARLA olarak belirtilmiştir; bu ifade tek/paylı mülkiyet şeklini doğrulamaz. Tapu/pay oranı, alan ve fiyat belgelerle kontrol edilmeden yayımlanmamalıdır.",
+    "isDemo": false,
+    "publicationApproved": false,
+    "status": "draft",
+    "currency": "TRY",
+    "category": "land",
+    "photos": [],
+    "evidence": {
+      "price": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "area": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "type": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "parcel": {
+        "status": "unverified",
+        "source": "Muhammet_Yusuf_8_Yeni_Ilan_Listesi.txt — 03.11.2026",
+        "checkedAt": null
+      },
+      "zoning": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "road": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      },
+      "utilities": {
+        "status": "unverified",
+        "source": null,
+        "checkedAt": null
+      }
+    }
+  }
+]
