@@ -22,7 +22,7 @@ let properties=combinePortfolio(bundledProperties.filter(p=>!p.isDemo)), remoteR
 if(site.online || site.localManaged){
   document.querySelector('#results').textContent='Portföyler yükleniyor…';
   const data=await fetchPortfolioOrFallback(site.localManaged?'/api/records':'/api/platform/public',bundledProperties.filter(p=>!p.isDemo));
-  properties=combinePortfolio(data.records);remoteRevision=data.revision;loadError=data.error;
+  properties=combinePortfolio(data.records,data.suppressedSourceIds);remoteRevision=data.revision;loadError=data.error;
 }
 const form = document.querySelector('#filters');
 const mobileFilterToggle=document.querySelector('#mobile-filter-toggle');
@@ -33,7 +33,7 @@ mobileFilterToggle.addEventListener('click',()=>{
 });
 const reveal = createMotion();
 initializeSite(properties);
-if(site.online) initializeInquiry(properties);
+if(site.online) initializeInquiry(properties.filter(record=>!record.referenceListing));
 renderContact(document.querySelector('#contact-actions'));
 renderWhatsAppShortcut();
 const openDetail = createDetail(document.querySelector('#detail'));
@@ -145,7 +145,7 @@ if((site.online || site.localManaged) && !loadError){
   async function synchronize(){
     if(document.hidden || updating)return;updating=true;
     try{const data=await fetchPortfolio(site.localManaged?'/api/records':'/api/platform/public');if(data.revision!==remoteRevision){
-      properties=combinePortfolio(data.records);remoteRevision=data.revision;updatePortfolioMap(properties);selectedIds=selectedIds.filter(id=>properties.some(record=>record.id===id));
+      properties=combinePortfolio(data.records,data.suppressedSourceIds);remoteRevision=data.revision;updatePortfolioMap(properties);selectedIds=selectedIds.filter(id=>properties.some(record=>record.id===id));
       document.querySelector('#filters').hidden=false;document.querySelector('.comparison').hidden=false;document.querySelector('#results').hidden=false;
       initializeSite(properties);render();
       const detail=document.querySelector('#detail');if(detail.open)detail.close();

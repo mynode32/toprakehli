@@ -11,5 +11,9 @@ test('temporary API failure keeps the source catalogue available',async()=>{
 
 test('successful API response replaces the fallback with current records',async()=>{
   const result=await fetchPortfolioOrFallback('/api/platform/public',[{id:'old'}],async()=>({records:[{id:'new'}],revision:3}));
-  assert.deepEqual(result,{records:[{id:'new'}],revision:3,error:''});
+  assert.deepEqual(result,{records:[{id:'new'}],revision:3,suppressedSourceIds:[],error:''});
+});
+test('withdrawn source identifiers survive the portfolio fetch',async()=>{
+  const result=await fetchPortfolioOrFallback('/api/platform/public',[],async()=>({records:[],revision:4,suppressedSourceIds:['source-1']}));
+  assert.deepEqual(result.suppressedSourceIds,['source-1']);
 });

@@ -29,3 +29,10 @@ test('eight new source listings join the original eighteen without pretending to
     assert.ok(Object.values(record.evidence).every(item=>item.status==='unverified'));
   }
 });
+test('withdrawn or archived managed source records do not reappear in the source catalogue',()=>{
+  const visible=combinePortfolio([]);
+  assert.equal(visible.length,26);
+  assert.equal(combinePortfolio([],['source-1','incoming-2026-11-03-1']).length,24);
+  assert.ok(!combinePortfolio([],['source-1']).some(record=>record.id==='source-1'));
+  assert.equal(combinePortfolio([{id:'source-1',status:'published'}],['source-1']).filter(record=>record.id==='source-1').length,1);
+});

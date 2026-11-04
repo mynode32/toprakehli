@@ -9,8 +9,8 @@ export async function fetchPortfolio(endpoint='/api/platform/public') {
 export async function fetchPortfolioOrFallback(endpoint,fallback,loader=fetchPortfolio){
   try{
     const data=await loader(endpoint);
-    return {records:data.records,revision:data.revision,error:''};
+    return {records:data.records,revision:data.revision,suppressedSourceIds:Array.isArray(data.suppressedSourceIds)?data.suppressedSourceIds:[],error:''};
   }catch(error){
-    return {records:fallback,revision:null,error:error.message || 'Güncel portföyler alınamadı.'};
+    return {records:fallback,revision:null,suppressedSourceIds:[],error:error.message || 'Güncel portföyler alınamadı.'};
   }
 }

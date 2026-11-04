@@ -1,3 +1,5 @@
+import {sourceDrafts} from '/src/domain/source-import.js';
+
 const $=selector=>document.querySelector(selector);
 const node=(tag,text,className)=>{const result=document.createElement(tag);if(text!=null)result.textContent=text;if(className)result.className=className;return result;};
 const themeToggle=$('#admin-theme-toggle');
@@ -27,6 +29,12 @@ async function refresh(){
   const [data,backups,inbox,audit]=await Promise.all([api('records'),api('backups'),api('admin-leads'),api('audit')]);
   if(epoch!==authEpoch)throw new Error('Oturum değişti. Yeniden giriş yapın.');
   records=data.records;revision=data.revision;leads=inbox.leads;
+  const availableSourceDrafts=sourceDrafts(records).length;
+  $('#import-source').hidden=!availableSourceDrafts;
+  $('#import-source').textContent=`${availableSourceDrafts} kaynak portföyü taslağa al`;
+  $('#source-import-note').textContent=availableSourceDrafts
+    ?'Sitedeki kaynak portföyler panel kayıtlarından ayrıdır. Taslağa aldıktan sonra kaynak kartları görünmeye devam eder; her kaydı ve gerçek fotoğrafını kontrol ederek ayrıca yayımlayın.'
+    :'Kaynak portföylerin tamamı panel kayıtlarında mevcut. Taslakları düzenleyip yayın onayını ayrıca verebilirsiniz.';
   $('#metric-total').textContent=records.filter(r=>r.status!=='archived').length;
   $('#metric-photo').textContent=records.filter(r=>r.photos.length && r.status!=='archived').length;
   $('#metric-missing').textContent=records.filter(r=>(!r.price || !r.area) && r.status!=='archived').length;
@@ -99,6 +107,13 @@ window.addEventListener('beforeunload',event=>{if(dirty || leadDrafts.size){even
 form.addEventListener('submit',async event=>{event.preventDefault();const record=collect();if(['published','sold'].includes(record.status) && !await ask(`Bu kayıt halka açık sitede gösterilecek.${record.photos.length?'':' Henüz gerçek fotoğraf eklenmedi; kart görselsiz görünebilir.'} Kaydedilsin mi?`))return;await run(async()=>{const next=editing?records.map(r=>r.id===editing?record:r):[...records,record];await api('records',{records:next,revision:editingRevision});dirty=false;$('#editor').hidden=true;await refresh();status('Kaydedildi. Yayındaki kayıtlar canlı sitede sayfa yenilendiğinde görünür. Açık sayfalar 30 saniyede güncellenir.');});});
 $('#preview-record').addEventListener('click',()=>preview(collect()));$('#close-preview').addEventListener('click',()=>$('#record-preview').close());
 $('#new').addEventListener('click',()=>edit());$('#cancel').addEventListener('click',async()=>{if(!dirty || await ask('Kaydedilmemiş değişikliklerden vazgeçilsin mi?')){dirty=false;$('#editor').hidden=true;}});
+$('#import-source').addEventListener('click',async()=>{
+  const drafts=sourceDrafts(records);
+  if(!drafts.length){status('Aktarılacak yeni kaynak portföy yok.');return;}
+  if(dirty || leadDrafts.size){status('Önce açık portföy veya talep değişikliklerini kaydedin ya da iptal edin.',true);return;}
+  if(!await ask(`${drafts.length} kaynak portföy taslak olarak panele alınacak. Mevcut kayıtlar korunur; fotoğraf ve yayın onayı eklenmez. Devam edilsin mi?`))return;
+  await run(async()=>{await api('records',{records:[...records,...drafts],revision});$('#editor').hidden=true;editing=null;await refresh();status(`${drafts.length} kaynak portföy taslağa alındı. Her kaydı kontrol edip gerçek fotoğrafları ekleyin; yayın onayını ayrıca verin.`);});
+});
 for(const id of ['record-search','record-state','record-sort'])$('#'+id).addEventListener('input',renderRecords);
 for(const id of ['lead-search','lead-state'])$('#'+id).addEventListener('input',renderLeads);
 $('#reload').addEventListener('click',async()=>{if(dirty && !await ask('Liste yenilenecek; açık formunuz korunacak ancak kaydetmeden önce değişiklikleri karşılaştırmanız gerekebilir. Devam edilsin mi?'))return;run(refresh);});

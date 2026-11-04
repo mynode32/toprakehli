@@ -52,6 +52,22 @@ test('source portfolio has a working, clearly unverified direct URL',async()=>{
     assert.equal((await handle(new Request(`${env.SITE_URL}/ilan/source-999`))).status,404);
   }finally{await sql.close();}
 });
+test('archived source portfolio is removed from public fallback and direct URL',async()=>{
+  const {sql,db}=await createSqlFixture(actor);
+  try{
+    await sql.query('update te_state set records=$1::jsonb where id=true',[JSON.stringify([{...record('source-1'),status:'archived'},{...record('private-draft'),status:'draft'}])]);
+    const handle=createPlatform({env,db,readTemplate:async()=>'<html><head><title>Test</title></head><body></body></html>'});
+    const response=await handle(new Request(`${env.SITE_URL}/api/platform/public`));
+    const data=await response.json();
+    assert.deepEqual(data.records,[]);
+    assert.deepEqual(data.suppressedSourceIds,['source-1']);
+    assert.equal((await handle(new Request(`${env.SITE_URL}/ilan/source-1`))).status,404);
+    await sql.query('update te_state set records=$1::jsonb where id=true',[JSON.stringify([{...record('source-1'),status:'draft',publishedAt:'2026-11-01T10:00:00Z'}])]);
+    const withdrawn=await (await handle(new Request(`${env.SITE_URL}/api/platform/public`))).json();
+    assert.deepEqual(withdrawn.suppressedSourceIds,['source-1']);
+    assert.equal((await handle(new Request(`${env.SITE_URL}/ilan/source-1`))).status,404);
+  }finally{await sql.close();}
+});
 test('Supabase adapter uses server credentials, bounded requests and safe errors',async()=>{
   let observed;
   const db=createSupabase({url:env.SUPABASE_URL,service:'server-secret',anon:'public-key'},async(url,options)=>{observed={url,options};return new Response(JSON.stringify({message:'revision_conflict server-secret'}),{status:400,headers:{'Content-Type':'application/json'}});});

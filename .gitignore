@@ -9,6 +9,7 @@ node_modules/
 content/*.tmp
 .deploy/
 .vercel/
+graphify-out/
 
 .vercel
 .env*

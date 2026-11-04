@@ -2,6 +2,8 @@
 
 Kurulumdan sonra `/admin/` adresine Supabase'de yetkilendirilmiş e-posta ve kendi parolanızla girin. Yerel panel ayrı sistemdir. İnternet sürümü Supabase kurulmadan giriş kabul etmez.
 
+Sitede görünen 26 kaynak portföy, Supabase'de yayımlanmış kayıt değildir. Panelde **Kaynak portföyleri taslağa al** düğmesi bunları mevcut kayıtların üzerine yazmadan taslak olarak içeri alır. Gerçek fotoğraf, tapu/fiyat/alan kontrolü ve işletme yayın onayı otomatik eklenmez. Taslak hazırlarken kaynak kartları sitede görünür; kayıt yayımlandığında aynı kimlikli kaynak kartının yerini alır. Yayından kaldırılan veya arşivlenen yönetilen kayıt kaynak kartı olarak yeniden görünmez.
+
 1. Yeni portföy → temel bilgileri yazın. Gerçekte bilinmeyen fiyat/alan boş bırakılabilir; tahmin girmeyin.
 2. İsterseniz şehir/ilçe/mahalle, açıklama ve kategori ekleyin. Kalıcı kayıt numarası otomatik üretilir.
 3. Fotoğrafları ekleyin; dosya başına 3 MB, en fazla 12. Açıklamaları düzeltin; Kapak yap / Önce / Sonra ile sırayı ayarlayın. Fotoğraf yüklemek ilanı yayımlamaz.

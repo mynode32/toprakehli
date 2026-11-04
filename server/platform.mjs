@@ -21,6 +21,8 @@ async function readBytes(request,max) {
   return Buffer.concat(chunks);
 }
 const loadState=async db=>(await db.select('te_state','id=eq.true&select=records,revision'))[0];
+const sourceIds=new Set(combinePortfolio([]).map(record=>record.id));
+const suppressedSourceIds=records=>records.filter(record=>sourceIds.has(record.id)&&(record.status==='archived'||(record.status==='draft'&&record.publishedAt))).map(record=>record.id);
 export function createPlatform({env=process.env,db:injected,readTemplate=()=>readFile(new URL('../.deploy/site/index.html',import.meta.url),'utf8')}={}) {
   return async function handle(request) {
     try {
@@ -34,13 +36,14 @@ export function createPlatform({env=process.env,db:injected,readTemplate=()=>rea
       if(!['GET','POST'].includes(request.method))throw new HttpError(405,'Yöntem desteklenmiyor.');
       if(path==='config' && !write) return json({online:true,contactEnabled:Boolean(config.privacy && config.privacyVersion && config.controller),privacy:config.privacy,privacyVersion:config.privacyVersion,controller:config.controller});
       if(path==='public' && !write) {
-        const state=await loadState(db);return json({records:state.records.map(publicRecord).filter(Boolean),revision:state.revision});
+        const state=await loadState(db);return json({records:state.records.map(publicRecord).filter(Boolean),suppressedSourceIds:suppressedSourceIds(state.records),revision:state.revision});
       }
       if(path==='sitemap' && !write)return new Response(sitemap((await loadState(db)).records.map(publicRecord).filter(Boolean),config.origin),{headers:{...headers,'Content-Type':'application/xml; charset=utf-8'}});
       if(path==='property' && !write){
         const id=url.searchParams.get('id');
-        const published=(await loadState(db)).records.map(publicRecord).filter(Boolean);
-        const record=combinePortfolio(published).find(record=>record.id===id);
+        const state=await loadState(db);
+        const published=state.records.map(publicRecord).filter(Boolean);
+        const record=combinePortfolio(published,suppressedSourceIds(state.records)).find(record=>record.id===id);
         if(!record)throw new HttpError(404,'İlan bulunamadı veya yayından kaldırıldı.');
         const html=await readTemplate();
         const indexable=env.VERCEL_ENV==='production'&&!record.referenceListing;

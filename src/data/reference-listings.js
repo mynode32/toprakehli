@@ -920,7 +920,7 @@ export const referenceListings = [
     }
   }
 ];
-export function combinePortfolio(records){
-  const ids=new Set(records.flatMap(p=>[p.id,p.referenceId].filter(Boolean)));
+export function combinePortfolio(records,suppressedSourceIds=[]){
+  const ids=new Set([...records.flatMap(p=>[p.id,p.referenceId].filter(Boolean)),...suppressedSourceIds]);
   return [...records,...[...referenceListings,...incomingListings].filter(p=>!ids.has(p.id))];
 }
