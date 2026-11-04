@@ -16,7 +16,7 @@ export function initializeSite(properties) {
   }
   document.querySelector('.hero .button').textContent = 'Portföyleri incele ↗';
   document.querySelector('#portfolio-note').textContent = portfolioNote(properties);
-  document.querySelector('footer span').textContent = 'Arsa & Arazi · Trakya';
+  document.querySelector('#footer-tagline').textContent = 'Arsa & Arazi · Trakya';
   document.querySelector('#source-principle').textContent = 'Portföy bilgileri kaynak ve kontrol tarihiyle birlikte değerlendirilir. Eksik bilgiler açıkça belirtilir.';
   document.querySelector('#filters').hidden = false;
   for(const control of document.querySelector('#filters').elements)control.disabled=!properties.length;
