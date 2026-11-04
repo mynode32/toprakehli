@@ -25,6 +25,12 @@ if(site.online || site.localManaged){
   properties=combinePortfolio(data.records);remoteRevision=data.revision;loadError=data.error;
 }
 const form = document.querySelector('#filters');
+const mobileFilterToggle=document.querySelector('#mobile-filter-toggle');
+mobileFilterToggle.addEventListener('click',()=>{
+  const expanded=form.classList.toggle('mobile-expanded');
+  mobileFilterToggle.setAttribute('aria-expanded',String(expanded));
+  mobileFilterToggle.textContent=expanded?'Filtreleri gizle ↑':'Filtreleri göster ↓';
+});
 const reveal = createMotion();
 initializeSite(properties);
 if(site.online) initializeInquiry(properties);
@@ -42,11 +48,13 @@ const showAllListingsButton=document.querySelector('#show-all-listings');
 function updatePortfolioDisclosure(){
   const cards=[...document.querySelectorAll('#listings > .listing')];
   const mobile=mobilePortfolioQuery.matches;
-  const shouldCollapse=mobile&&!mobilePortfolioExpanded&&cards.length>3;
-  cards.forEach((card,index)=>{card.hidden=shouldCollapse&&index>=3;});
-  showAllListingsButton.hidden=!mobile||cards.length<=3;
+  const shouldCollapse=mobile&&!mobilePortfolioExpanded&&cards.length>2;
+  cards.forEach((card,index)=>{card.hidden=shouldCollapse&&index>=2;});
+  showAllListingsButton.hidden=!mobile||cards.length<=2;
   showAllListingsButton.setAttribute('aria-expanded',String(mobilePortfolioExpanded));
   showAllListingsButton.textContent=mobilePortfolioExpanded?'Daha az göster':`Tüm portföyleri göster (${cards.length})`;
+  const summary=document.querySelector('#results');
+  if(summary.dataset.baseSummary)summary.textContent=summary.dataset.baseSummary+(shouldCollapse?' İlk 2 kayıt gösteriliyor.':'');
 }
 showAllListingsButton.addEventListener('click',()=>{mobilePortfolioExpanded=!mobilePortfolioExpanded;updatePortfolioDisclosure();});
 mobilePortfolioQuery.addEventListener('change',updatePortfolioDisclosure);
@@ -65,8 +73,8 @@ function render() {
   renderListings(document.querySelector('#listings'), matches, openDetail,
     { ids: selectedIds, limit: comparisonLimit, onToggle: toggle });
   if (!site.preview && !properties.length && !loadError) renderPortfolioPreview(document.querySelector('#listings'));
+  document.querySelector('#results').dataset.baseSummary = resultSummary(matches,matches.length,Boolean(assistantSelection));
   updatePortfolioDisclosure();
-  document.querySelector('#results').textContent = resultSummary(matches,matches.length,Boolean(assistantSelection));
   if(!site.preview && !properties.length && !loadError)document.querySelector('#results').textContent='Henüz yayında portföy yok. Aşağıdaki kartlar yalnız görünüm örneğidir; satış ilanı değildir.';
   document.querySelector('#comparison-status').textContent = `${selectedIds.length} / ${comparisonLimit} portföy seçildi. ${selectedIds.length === comparisonLimit ? 'Yeni seçim için bir portföyü kaldırın.' : 'Seçimler filtre değiştiğinde korunur.'}`;
   renderComparison(document.querySelector('#comparison'), properties.filter(property => selectedIds.includes(property.id)), id => toggle(id, true));
@@ -109,6 +117,9 @@ for (const control of form.elements) {
   control.value = value;
 }
 currentFilters = Object.fromEntries(new FormData(form));
+if(['region','budget','type','size','sort'].some(key=>params.has(key) && !['all','default'].includes(params.get(key)))){
+  form.classList.add('mobile-expanded');mobileFilterToggle.setAttribute('aria-expanded','true');mobileFilterToggle.textContent='Filtreleri gizle ↑';
+}
 render();
 const requested = properties.find(property => property.id === (params.get('property') || location.pathname.match(/^\/ilan\/([a-z0-9-]+)$/)?.[1]));
 initializeAssistant({getProperties:()=>properties,onAction:action=>{
