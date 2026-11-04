@@ -22,7 +22,6 @@ export function initializeExperience(){
   }
   document.querySelector('.te-map-actions button').addEventListener('click',showMap);
   for(const id of ['teLat','teLon'])document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();showMap();}});
-  for(const button of document.querySelectorAll('#platform button'))button.addEventListener('click',()=>document.querySelector('.site-chat-launcher')?.click());
   for(const button of document.querySelectorAll('#rehber button')){const article=button.closest('article');const note=document.createElement('p');note.hidden=true;note.textContent=['Ada/parsel ve tapu niteliğini güncel resmî kayıtlarla karşılaştırın. Hisse, şerh ve takyidat bilgilerini yetkili uzmanlarla inceleyin.','Güncel imar planı ve plan notlarını ilgili belediye veya yetkili idareden edinin. İlan açıklaması tek başına yapılaşma hakkını doğrulamaz.','Konumu, ulaşımı, yola erişimi ve kullanım niteliğini birlikte araştırın. Şematik harita parsel sınırı göstermez.'][[...article.parentNode.children].indexOf(article)];article.append(note);button.setAttribute('aria-expanded','false');button.addEventListener('click',()=>{note.hidden=!note.hidden;button.setAttribute('aria-expanded',String(!note.hidden));});}
   document.querySelector('#bolgeler .btn')?.addEventListener('click',()=>document.querySelector('#rehber').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));
 }

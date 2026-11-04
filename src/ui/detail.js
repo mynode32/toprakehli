@@ -56,7 +56,7 @@ export function createDetail(dialog) {
     const facts = dialog.querySelector('#detail-facts');
     facts.replaceChildren(...propertyFacts(property).map(fact => {
       const value = element('dd');
-      value.append(factContent(fact));
+      value.append(factContent(fact, { showStatus: !property.referenceListing }));
       const card=element('div',undefined,'detail-fact-card');card.append(element('dt',fact.label),value);return card;
     }));
     renderContact(dialog.querySelector('#detail-contact'), property);

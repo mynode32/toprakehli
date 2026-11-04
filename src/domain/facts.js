@@ -17,7 +17,7 @@ function validDate(value) {
 export function describeFact(property, [key, label, unit]) {
   const value = property[key];
   const metadata = property.evidence?.[key];
-  const present = hasValue(value, unit);
+  const present = hasValue(value, unit) && !(key === 'type' && value === 'Doğrulanacak');
   const source = typeof metadata?.source === 'string' && metadata.source.trim() ? metadata.source.trim() : null;
   const date = validDate(metadata?.checkedAt) ? metadata.checkedAt : null;
   const verified = !property.isDemo && present && metadata?.status === 'verified' && source && date;

@@ -38,9 +38,9 @@ export function renderComparison(container, properties, onRemove) {
     const heading = element('th', fact.label);
     heading.scope = 'row';
     row.append(heading);
-    for (const column of columns) {
+    for (const [propertyIndex, column] of columns.entries()) {
       const cell = element('td');
-      cell.append(factContent(column[index]));
+      cell.append(factContent(column[index], { showStatus: !properties[propertyIndex].referenceListing }));
       row.append(cell);
     }
     body.append(row);

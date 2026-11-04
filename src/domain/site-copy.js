@@ -1,11 +1,7 @@
 export function portfolioNote(records){
  if(!records.length)return 'Portföy alanımız hazırlanıyor. Kartlar yalnız görünüm örneğidir.';
- const source=records.filter(record=>record.referenceListing).length;
- const published=records.length-source;
- const parts=[];
- if(source)parts.push(`${source} kaynak kayıt`);
- if(published)parts.push(`${published} yayınlanmış ilan`);
- return `${parts.join(' ve ')} gösteriliyor.${source?' Kaynak liste bilgileri doğrulama bekliyor; görseller temsilidir.':''}`;
+ const source=records.some(record=>record.referenceListing);
+ return `${records.length} portföy gösteriliyor.${source?' Görseller tanıtım amaçlıdır; güncel fiyat ve parsel bilgileri için bizimle iletişime geçin.':''}`;
 }
 
 export function assistantGreeting(records){
@@ -13,5 +9,5 @@ export function assistantGreeting(records){
 }
 
 export function resultSummary(records,count,assistantSelection=false){
- return `${count} portföy gösteriliyor.${count && records.some(record=>record.referenceListing)?' Kaynak liste kayıtları doğrulama bekliyor.':''}${assistantSelection?' Asistan seçimi; tümünü görmek için filtreleri sıfırlayın.':''}`;
+ return `${count} portföy gösteriliyor.${assistantSelection?' Asistan seçimi; tümünü görmek için filtreleri sıfırlayın.':''}`;
 }

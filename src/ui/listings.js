@@ -34,15 +34,15 @@ export function renderListings(container, properties, onDetail, comparison) {
       image.width = 610;
       image.height = 222;
       image.addEventListener('error', () => illustration.replaceChildren(element('span', 'Görsel yüklenemedi', 'image-note')), { once: true });
-      illustration.append(image, element('span', (property.isDemo || property.referenceListing) ? 'ÖRNEK GÖRSEL · GERÇEK PARSEL DEĞİLDİR' : 'PORTFÖY GÖRSELİ', 'image-note'));
+      illustration.append(image);
     }
     article.append(illustration, element('p', property.region, 'eyebrow'), element('h3', property.title || property.local));
     if(property.status==='sold')article.append(element('p','Satıldı','muted'));
     const price = describeFact(property, ['price', 'Fiyat', 'TL']);
     const area = describeFact(property, ['area', 'Alan', 'm²']);
     const titleType = describeFact(property, ['type', 'Tapu türü']);
-    article.append(element('p', `${area.value} · ${titleType.value}`, 'muted'));
-    article.append(element('p', price.value, 'price'), element('p', price.status, 'muted'));
+    article.append(element('p', titleType.value === 'Bilgi sağlanmadı' ? area.value : `${area.value} · ${titleType.value}`, 'muted'));
+    article.append(element('p', price.value, 'price'));
     const button = element('button', property.isDemo ? 'Örnek detayı incele ↗' : 'Portföyü incele ↗', 'detail-button');
     button.type = 'button';
     button.setAttribute('aria-label', `${property.local}${property.isDemo ? ' örnek' : ''} portföy detayını incele`);
