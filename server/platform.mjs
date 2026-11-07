@@ -32,13 +32,13 @@ export function createPlatform({env=process.env,db:injected,readTemplate=()=>rea
       const propertyPath=url.pathname.match(/^\/ilan\/([a-z0-9-]{1,60})$/);
       if(propertyPath){path='property';url.searchParams.set('id',propertyPath[1]);}
       if(url.pathname==='/sitemap.xml')path='sitemap';
-      const write=request.method!=='GET';
-      if(!['GET','POST'].includes(request.method))throw new HttpError(405,'Yöntem desteklenmiyor.');
+      const write=request.method==='POST';
+      if(!['GET','POST'].includes(request.method) && !(request.method==='HEAD' && path==='sitemap'))throw new HttpError(405,'Yöntem desteklenmiyor.');
       if(path==='config' && !write) return json({online:true,contactEnabled:Boolean(config.privacy && config.privacyVersion && config.controller),privacy:config.privacy,privacyVersion:config.privacyVersion,controller:config.controller});
       if(path==='public' && !write) {
         const state=await loadState(db);return json({records:state.records.map(publicRecord).filter(Boolean),suppressedSourceIds:suppressedSourceIds(state.records),revision:state.revision});
       }
-      if(path==='sitemap' && !write)return new Response(sitemap((await loadState(db)).records.map(publicRecord).filter(Boolean),config.origin),{headers:{...headers,'Content-Type':'application/xml; charset=utf-8'}});
+      if(path==='sitemap' && !write)return new Response(request.method==='HEAD'?null:sitemap((await loadState(db)).records.map(publicRecord).filter(Boolean),config.origin),{headers:{...headers,'Content-Type':'application/xml; charset=utf-8'}});
       if(path==='property' && !write){
         const id=url.searchParams.get('id');
         const state=await loadState(db);

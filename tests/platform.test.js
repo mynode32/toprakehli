@@ -117,6 +117,7 @@ test('PostgreSQL migration and API integration (PGlite; Auth/Storage transport s
     assert.equal(indexable.headers.get('X-Robots-Tag'),null);
     assert.doesNotMatch(await indexable.text(),/<meta name="robots" content="noindex, nofollow">/);
     const map=await handle(new Request(env.SITE_URL+'/sitemap.xml'));assert.equal(map.status,200);assert.ok((await map.text()).includes('/ilan/listing-1'));
+    const mapHead=await handle(new Request(env.SITE_URL+'/sitemap.xml',{method:'HEAD'}));assert.equal(mapHead.status,200);assert.match(mapHead.headers.get('content-type'),/application\/xml/);assert.equal(await mapHead.text(),'');
   });
   await t.test('stale revision cannot overwrite concurrent edits; archive preserves record',async()=>{
     const current=(await request('records')).data.records;
